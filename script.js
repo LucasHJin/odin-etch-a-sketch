@@ -17,11 +17,17 @@ function createGrid(blocks) {
     tiles = document.querySelectorAll(".tile");
 
     for (const tile of tiles) {
+        tile.dataset.overlayOpacity = 0.1;
         tile.addEventListener("mouseover", function () {
             tile.style.backgroundColor = "#fdc3c3";
         }); 
         tile.addEventListener("mouseout", function () {
-            tile.style.backgroundColor = "red";
+            let opacity = parseFloat(tile.dataset.overlayOpacity) || 0;
+            tile.style.backgroundColor = `rgb(0, 0, 255, ${tile.dataset.overlayOpacity})`;
+            if (tile.dataset.overlayOpacity<1) {
+                opacity += 0.1
+                tile.dataset.overlayOpacity = opacity;
+            }
         }); 
     }
 }
