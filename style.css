@@ -2,7 +2,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100v
 }
 
 .container {
@@ -14,7 +14,7 @@ body {
 .container div {
     width: 45px;                 
     height: 45px;           
-    background-color: lightblue; 
+    background-color: lightgrey; 
     margin: 1px;
     border: 1px solid #ddd;     
 }
