@@ -34,7 +34,7 @@ function delGrid() {
 
 button = document.querySelector("button");
 button.addEventListener("click", function () {
-    let numOfBlocks; = prompt("How long should it be? (between 1 & 100)");
+    let numOfBlocks = prompt("How long should it be? (between 1 & 100)");
     while (numOfBlocks<1 || numOfBlocks>100 || isNaN(numOfBlocks)) {
         numOfBlocks = prompt("Sorry, it needs to be between 1 & 100.");
     }
