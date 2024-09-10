@@ -14,19 +14,30 @@ function createGrid(blocks) {
         container.appendChild(div);
     }
 
-    tiles = document.querySelectorAll(".tile");
+    let mouseDown = false;
 
+    document.addEventListener("mousedown", () => mouseDown = true);
+    document.addEventListener("mouseup", () => mouseDown = false);
+
+    tiles = document.querySelectorAll(".tile");
     for (const tile of tiles) {
-        tile.dataset.overlayOpacity = 0.1;
         tile.addEventListener("mouseover", function () {
             tile.style.backgroundColor = "#fdc3c3";
         }); 
+
+        tile.dataset.originalColor = getComputedStyle(tile).backgroundColor;
+        tile.dataset.overlayOpacity = 0.1;
         tile.addEventListener("mouseout", function () {
-            let opacity = parseFloat(tile.dataset.overlayOpacity) || 0;
-            tile.style.backgroundColor = `rgb(0, 0, 255, ${tile.dataset.overlayOpacity})`;
-            if (tile.dataset.overlayOpacity<1) {
-                opacity += 0.1
-                tile.dataset.overlayOpacity = opacity;
+            if (mouseDown) {
+                let opacity = parseFloat(tile.dataset.overlayOpacity) || 0;
+                tile.style.backgroundColor = `rgb(0, 0, 255, ${tile.dataset.overlayOpacity})`;
+                if (tile.dataset.overlayOpacity<1) {
+                    opacity += 0.1
+                    tile.dataset.overlayOpacity = opacity;
+                }
+                tile.dataset.originalColor = getComputedStyle(tile).backgroundColor;
+            } else {
+                tile.style.backgroundColor = tile.dataset.originalColor;
             }
         }); 
     }
